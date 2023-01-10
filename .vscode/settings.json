@@ -1,0 +1,11 @@
+{
+  // Use LF instead of CRLF.
+  "files.eol": "\n",
+
+  // Lint, code format every time you save.
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}

@@ -1,3 +1,5 @@
+import SearchPage from "./pages/SearchPage";
+
 export default function App() {
-  return <div className="text-3xl font-bold underline">hello</div>;
+  return <SearchPage />;
 }

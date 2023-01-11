@@ -4,9 +4,10 @@ import * as UI from "src/components/ui";
 interface Props {
   searchValue: string;
   sick: SickType;
+  isFocus: boolean;
 }
 
-export function SearchItem({ searchValue, sick }: Props) {
+export function SearchItem({ searchValue, sick, isFocus }: Props) {
   const { sickNm } = sick;
 
   // Fixme: dangerouslySetInnerHTMl을 사용하지 않고 구현하기
@@ -18,7 +19,7 @@ export function SearchItem({ searchValue, sick }: Props) {
     );
 
   return (
-    <UI.Item>
+    <UI.Item isFocus={isFocus}>
       <span dangerouslySetInnerHTML={{ __html: boldSickName }} />
     </UI.Item>
   );

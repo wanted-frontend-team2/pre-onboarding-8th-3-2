@@ -1,11 +1,13 @@
-// import type { ReactNode } from "react";
 import { useSearchSick } from "src/hooks/useSearchSick";
+import { useChangeFocusItem } from "src/hooks/useChangeFocusItem";
+
 import { SearchBar } from "./SearchBar";
 import { SearchList } from "./SearchList";
 
 export function SearchSection() {
-  const { searchValue, result, isFocus, onChange, setTrue, setFalse } =
+  const { searchValue, searchList, isFocus, onChange, setTrue, setFalse } =
     useSearchSick();
+  const { onKeyDown, focusIndex } = useChangeFocusItem(searchValue, searchList);
 
   return (
     <section className=" h-[300px] w-full bg-sky-200 py-6">
@@ -16,8 +18,15 @@ export function SearchSection() {
           onFocus={setTrue}
           onBlur={setFalse}
           isFocus={isFocus}
+          onKeyDown={onKeyDown}
         />
-        {isFocus && <SearchList searchValue={searchValue} sickList={result} />}
+        {isFocus && (
+          <SearchList
+            searchValue={searchValue}
+            sickList={searchList}
+            focusIndex={focusIndex}
+          />
+        )}
       </div>
     </section>
   );

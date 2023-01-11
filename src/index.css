@@ -19,3 +19,20 @@ input:focus:-ms-input-placeholder,
 textarea:focus:-ms-input-placeholder {
   color: transparent;
 }
+
+/* scrollbar style */
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(128, 128, 128, 0.35);
+}
+*::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+}

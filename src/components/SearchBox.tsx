@@ -14,6 +14,7 @@ function SearchBox(): JSX.Element {
           `${process.env.REACT_APP_API_ADDRESS}?q=${inputValue}`
         );
         setSearchResults(response.data);
+        console.info("calling api");
       } catch (e) {
         if (e instanceof Error) {
           alert(`통신에 실패했습니다. 다시 시도해주세요: ${e.message}`);

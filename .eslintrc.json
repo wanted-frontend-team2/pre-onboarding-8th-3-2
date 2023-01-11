@@ -27,7 +27,9 @@
     "react/jsx-props-no-spreading": "off",
     "import/prefer-default-export": "off",
     // 배포를 위한 any warning off
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    // console.info 허용
+    "no-console": ["warn", { "allow": ["info"] }]
   },
   "ignorePatterns": ["tailwind.config.js"]
 }

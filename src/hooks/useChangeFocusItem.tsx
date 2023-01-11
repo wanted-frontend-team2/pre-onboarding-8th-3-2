@@ -34,7 +34,12 @@ export const useChangeFocusItem = (
   const { onKeyDown } = useControlKeyboard({
     ArrowUp: minusIndex,
     ArrowDown: plusIndex,
-    Enter: () => alert(`${result[focusIndex].sickNm}을 검색합니다.`),
+    Enter: () =>
+      alert(
+        `${
+          result[focusIndex] ? result[focusIndex].sickNm : searchValue
+        }을 검색합니다.`
+      ),
   });
 
   return {

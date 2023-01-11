@@ -15,8 +15,11 @@ function SearchWrap() {
   useEffect(() => {
     if (searchText.trim().length === 0) return;
     const debounce = setTimeout(async () => {
-      const data = await getSickResult(searchText);
-      setSearchResult(data);
+      const getSickList = await getSickResult(searchText);
+      const sickFilterList = getSickList.filter((el: any) =>
+        el.sickNm.includes(searchText)
+      );
+      setSearchResult(sickFilterList);
       // eslint-disable-next-line no-console
       console.info("calling api");
     }, 500);

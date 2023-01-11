@@ -61,12 +61,13 @@ function SearchBox(): JSX.Element {
   }
 
   return (
-    <>
+    <div className="mx-auto mt-10 w-96">
       <input
         type="text"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyUp={onKeyUpHandler}
+        className="border-2 rounded w-full"
       />
       <RecommendedWords
         results={searchResults}
@@ -75,7 +76,7 @@ function SearchBox(): JSX.Element {
         focusIndex={focusIndex}
         focusRef={focusRef}
       />
-    </>
+    </div>
   );
 }
 

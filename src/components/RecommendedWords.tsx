@@ -20,7 +20,7 @@ function RecommendedWords({
         <li
           key={sickCd}
           ref={index === focusIndex ? focusRef : undefined}
-          className={index === focusIndex ? "bg-slate-100	" : ""}
+          className={index === focusIndex ? "bg-sky-100	" : ""}
         >
           {BoldMatchParts(inputValue, sickNm)}
         </li>
@@ -31,7 +31,11 @@ function RecommendedWords({
     }
     return "";
   }
-  return <ul ref={listRef}>{renderWord()}</ul>;
+  return (
+    <ul ref={listRef} className="rounded bg-slate-100 leading-8 p-2">
+      {renderWord()}
+    </ul>
+  );
 }
 
 export default RecommendedWords;

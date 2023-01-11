@@ -1,4 +1,4 @@
-import React, { ChangeEvent, Dispatch, SetStateAction } from "react";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
 import { AiFillCloseCircle, AiOutlineSearch } from "react-icons/ai";
 
 interface Props {

@@ -1,4 +1,3 @@
-import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { SickType } from "../types";
 

@@ -1,8 +1,8 @@
-import React, { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import SearchInput from "./SearchInput";
 import SearchList from "./SearchList";
 import { SickType } from "../types";
-import { getSickResult } from "../hooks/useSearch";
+import { getSickResult } from "../api/getSearch";
 
 function SearchWrap() {
   const [searchText, setSearchText] = useState("");

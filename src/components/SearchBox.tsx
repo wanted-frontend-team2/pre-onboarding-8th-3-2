@@ -1,12 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-/* eslint-disable no-console */
 /* eslint-disable no-alert */
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
+import RecommendedWords from "./RecommendedWords";
 
-function SearchBox() {
-  const [inputValue, setInputValue] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+function SearchBox(): JSX.Element {
+  const [inputValue, setInputValue] = useState<string>("");
+  const [searchResults, setSearchResults] = useState<[]>([]);
 
   useEffect(() => {
     const getSearchResults = async () => {
@@ -15,10 +14,10 @@ function SearchBox() {
           `${process.env.REACT_APP_API_ADDRESS}?q=${inputValue}`
         );
         setSearchResults(response.data);
-      } catch (error: any) {
-        alert(
-          `통신에 실패했습니다. 다시 시도해주세요: ${error.response.data.message}`
-        );
+      } catch (e) {
+        if (e instanceof Error) {
+          alert(`통신에 실패했습니다. 다시 시도해주세요: ${e.message}`);
+        }
       }
     };
     if (inputValue) getSearchResults();
@@ -26,20 +25,12 @@ function SearchBox() {
 
   return (
     <>
-      <form>
-        <input
-          type="text"
-          name="searchWord"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-      </form>
-      <ul>
-        {searchResults &&
-          searchResults.map((result: any) => (
-            <li key={result.sickCd}>{result.sickNm}</li>
-          ))}
-      </ul>
+      <input
+        type="text"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+      />
+      <RecommendedWords results={searchResults} />
     </>
   );
 }

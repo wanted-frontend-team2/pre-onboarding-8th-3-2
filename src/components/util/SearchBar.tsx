@@ -3,6 +3,7 @@ import { IoSearch } from "react-icons/io5";
 type SearchBarProps = {
   searchTarget: string;
   setSearchTarget: (newWord: string) => void;
+  onArrowKeyDown?: [() => void, () => void];
   onSubmit: () => void;
   placeholder: string;
 };
@@ -10,9 +11,21 @@ type SearchBarProps = {
 export default function SearchBar({
   searchTarget,
   setSearchTarget,
+  onArrowKeyDown = [() => {}, () => {}],
   onSubmit,
   placeholder,
 }: SearchBarProps) {
+  const [onArrowUp, onArrowDown] = onArrowKeyDown;
+  const onKeyDown = (keyCode: string, isComposing: boolean) => {
+    if (isComposing) return;
+    if (keyCode === "ArrowUp") {
+      onArrowUp();
+    }
+    if (keyCode === "ArrowDown") {
+      onArrowDown();
+    }
+  };
+
   return (
     <form
       onSubmit={onSubmit}
@@ -22,6 +35,7 @@ export default function SearchBar({
       <input
         value={searchTarget}
         onChange={(e) => setSearchTarget(e.target.value)}
+        onKeyDown={(e) => onKeyDown(e.code, e.nativeEvent.isComposing)}
         placeholder={placeholder}
         className="flex-grow bg-transparent text-slate-800 focus:outline-0"
       />

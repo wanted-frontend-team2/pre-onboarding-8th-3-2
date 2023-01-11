@@ -8,11 +8,15 @@ type Disease = {
 type SuggestedSearchWordProps = {
   searchTarget: string;
   suggestedWords: Disease[];
+  selectedIndex: number;
+  maxSuggestion: number;
 };
 
 export default function SuggestedSearchWord({
   searchTarget,
   suggestedWords,
+  selectedIndex,
+  maxSuggestion,
 }: SuggestedSearchWordProps) {
   const boldSpecificWord = (baseString: string, targetString: string) => {
     const startIndex = baseString.indexOf(targetString);
@@ -37,10 +41,12 @@ export default function SuggestedSearchWord({
       {suggestedWords.length < 1 ? (
         <p className="py-1.5 text-slate-400 select-none">검색어 없음</p>
       ) : (
-        suggestedWords.slice(0, 7).map((disease) => (
+        suggestedWords.slice(0, maxSuggestion).map((disease, index) => (
           <div
             key={disease.sickCd}
-            className="flex py-1.5 items-center cursor-pointer"
+            className={`flex py-1.5 items-center cursor-pointer ${
+              index === selectedIndex && "bg-blue-200"
+            }`}
           >
             <IoSearch />
             <span className="pl-2">

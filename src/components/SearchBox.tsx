@@ -5,6 +5,8 @@ import RecommendedWords from "./RecommendedWords";
 import { SearchResultType } from "../types";
 import useDebounce from "../hook/debouncer";
 
+type Cache = { [key: string]: SearchResultType[] };
+
 function SearchBox(): JSX.Element {
   const [inputValue, setInputValue] = useState<string>("");
   const [searchResults, setSearchResults] = useState<SearchResultType[]>([]);
@@ -15,18 +17,24 @@ function SearchBox(): JSX.Element {
   );
   const focusRef = useRef<any>(null);
   const listRef = useRef<any>(null);
+  const cache = useRef<Cache>({});
 
   useEffect(() => {
     const getSearchResults = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_API_ADDRESS}?q=${debouncedInput}`
-        );
-        setSearchResults(response.data);
-        console.info("calling api");
-      } catch (e) {
-        if (e instanceof Error) {
-          alert(`통신에 실패했습니다. 다시 시도해주세요: ${e.message}`);
+      if (cache.current[debouncedInput]) {
+        setSearchResults(cache.current[debouncedInput]);
+      } else {
+        try {
+          const response = await axios.get(
+            `${process.env.REACT_APP_API_ADDRESS}?q=${debouncedInput}`
+          );
+          setSearchResults(response.data);
+          cache.current[debouncedInput] = response.data;
+          console.info("calling api");
+        } catch (e) {
+          if (e instanceof Error) {
+            alert(`통신에 실패했습니다. 다시 시도해주세요: ${e.message}`);
+          }
         }
       }
     };

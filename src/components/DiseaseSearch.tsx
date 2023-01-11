@@ -34,12 +34,12 @@ export default function DiseaseSearch() {
 
   const debouncedSearchTarget = useDebounce(searchTarget, 500);
 
+  const getSearchResult = useFetch(`sick?q=${debouncedSearchTarget}`);
+
   useEffect(() => {
     if (debouncedSearchTarget.trim().length > 0) {
       showSuggest();
-      useFetch(`sick?q=${debouncedSearchTarget}`).then((data) =>
-        setSuggestedWords(data)
-      );
+      setSuggestedWords(getSearchResult);
     } else {
       hideSuggest();
     }

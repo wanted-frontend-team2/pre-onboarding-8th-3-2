@@ -6,7 +6,7 @@ import axios from "axios";
 
 function SearchBox() {
   const [inputValue, setInputValue] = useState("");
-  const [searchResults, setSearchResults] = useState();
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     const getSearchResults = async () => {
@@ -25,14 +25,22 @@ function SearchBox() {
   }, [inputValue]);
 
   return (
-    <form>
-      <input
-        type="text"
-        name="searchWord"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-      />
-    </form>
+    <>
+      <form>
+        <input
+          type="text"
+          name="searchWord"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+      </form>
+      <ul>
+        {searchResults &&
+          searchResults.map((result: any) => (
+            <li key={result.sickCd}>{result.sickNm}</li>
+          ))}
+      </ul>
+    </>
   );
 }
 

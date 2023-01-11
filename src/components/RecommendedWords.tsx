@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { SearchResultType } from "../types";
 import BoldMatchParts from "./BoldMatchParts";
 
@@ -15,23 +14,24 @@ function RecommendedWords({
   focusIndex: number;
   focusRef: any;
 }): JSX.Element {
-  return (
-    <ul ref={listRef}>
-      {results.length > 0 ? (
-        results.map(({ sickCd, sickNm }, index) => (
-          <li
-            key={sickCd}
-            ref={index === focusIndex ? focusRef : undefined}
-            className={index === focusIndex ? "bg-slate-100	" : ""}
-          >
-            {BoldMatchParts(inputValue, sickNm)}
-          </li>
-        ))
-      ) : (
-        <div>검색어 없음</div>
-      )}
-    </ul>
-  );
+  function renderWord() {
+    if (results.length > 0) {
+      return results.map(({ sickCd, sickNm }, index) => (
+        <li
+          key={sickCd}
+          ref={index === focusIndex ? focusRef : undefined}
+          className={index === focusIndex ? "bg-slate-100	" : ""}
+        >
+          {BoldMatchParts(inputValue, sickNm)}
+        </li>
+      ));
+    }
+    if (inputValue) {
+      return <div>검색어 없음</div>;
+    }
+    return "";
+  }
+  return <ul ref={listRef}>{renderWord()}</ul>;
 }
 
 export default RecommendedWords;

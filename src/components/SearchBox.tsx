@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /* eslint-disable no-alert */
 import { useEffect, useRef, useState } from "react";
 import axios from "axios";
@@ -19,15 +18,18 @@ function SearchBox(): JSX.Element {
           `${process.env.REACT_APP_API_ADDRESS}?q=${inputValue}`
         );
         setSearchResults(response.data);
-        // console.info("calling api");
-        // console.log("inputValue에 따른 api 응답", inputValue, response.data);
+        console.info("calling api");
       } catch (e) {
         if (e instanceof Error) {
           alert(`통신에 실패했습니다. 다시 시도해주세요: ${e.message}`);
         }
       }
     };
-    if (inputValue) getSearchResults();
+    if (inputValue) {
+      getSearchResults();
+      return;
+    }
+    setSearchResults([]);
   }, [inputValue]);
 
   function onKeyUpHandler(e: any) {

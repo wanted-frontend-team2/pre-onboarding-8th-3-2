@@ -17,6 +17,7 @@ function SearchWrap() {
     const debounce = setTimeout(async () => {
       const data = await getSickResult(searchText);
       setSearchResult(data);
+      // eslint-disable-next-line no-console
       console.info("calling api");
     }, 500);
     // eslint-disable-next-line consistent-return

@@ -5,6 +5,6 @@ export type SickList = {
 
 export type SickListProps = {
   options: SickList[];
-  // handleDropDownClick: (clickedOption: string) => void;
-  // selected: number;
+  dropDownClickHandler: (clickedOption: string) => void;
+  selected: number;
 };

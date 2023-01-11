@@ -9,6 +9,8 @@ function SearchBar() {
   const [inputValue, setInputValue] = useState<string>("");
   const [hasText, setHasText] = useState<boolean>(false);
   const [options, setOptions] = useState<SickList[]>([]);
+  const [selected, setSelected] = useState<number>(-1);
+  const [isError, setIsError] = useState<boolean>(false);
 
   useEffect(() => {
     if (inputValue === "") {
@@ -26,6 +28,7 @@ function SearchBar() {
 
   const inputValueRemoveHandler = () => {
     setInputValue("");
+    setOptions([]);
   };
 
   const sickData = async (sickName: string) => {
@@ -38,8 +41,9 @@ function SearchBar() {
         option.sickNm.match(filterRegex)
       );
       setOptions(resultOptions);
+      setIsError(false);
     } catch (err) {
-      console.log("err", err);
+      setIsError(true);
     }
   };
 
@@ -52,8 +56,31 @@ function SearchBar() {
     };
   }, [inputValue]);
 
+  const dropDownClickHandler = (clickedOption: string) => {
+    setInputValue(clickedOption);
+    const resultOptions = options.filter(
+      (option: SickList) => option.sickNm === clickedOption
+    );
+    setOptions(resultOptions);
+  };
+
+  const dropDownKeyUpHandler = (e: React.KeyboardEvent<HTMLElement>) => {
+    if (hasText) {
+      if (e.code === "ArrowDown" && options.length - 1 > selected) {
+        setSelected(selected + 1);
+      }
+      if (e.code === "ArrowUp" && selected >= 0) {
+        setSelected(selected - 1);
+      }
+      if (e.code === "Enter" && selected >= 0) {
+        dropDownClickHandler(options[selected].sickNm);
+        setSelected(-1);
+      }
+    }
+  };
+
   return (
-    <div>
+    <div role="presentation" onKeyUp={dropDownKeyUpHandler}>
       <section>
         <input
           type="text"
@@ -65,7 +92,14 @@ function SearchBar() {
           &times;
         </button>
       </section>
-      {hasText && <DropDown options={options} />}
+      {hasText && !isError && (
+        <DropDown
+          options={options}
+          dropDownClickHandler={dropDownClickHandler}
+          selected={selected}
+        />
+      )}
+      {isError && <p>에러가 발생하여 리스트를 가져올 수 없습니다.</p>}
     </div>
   );
 }

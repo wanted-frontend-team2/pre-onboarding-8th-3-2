@@ -1,10 +1,5 @@
 import SearchPage from "./pages/SearchPage";
 
-// const ROUTE_PATH = {
-//   test: "test",
-//   search: "/",
-// };
-
 function App() {
   return (
     <div className="App">

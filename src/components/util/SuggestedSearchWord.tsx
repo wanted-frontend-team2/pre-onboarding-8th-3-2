@@ -1,10 +1,5 @@
 import { IoSearch } from "react-icons/io5";
 
-type Disease = {
-  sickCd: string;
-  sickNm: string;
-};
-
 type SuggestedSearchWordProps = {
   searchTarget: string;
   suggestedWords: Disease[];

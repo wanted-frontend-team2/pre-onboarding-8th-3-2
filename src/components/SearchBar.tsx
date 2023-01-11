@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-import { SickList } from "../type";
+import { SickList } from "../types";
 
 import DropDown from "./DropDown";
+
+import removeImg from "../images/remove.svg";
 
 function SearchBar() {
   const [inputValue, setInputValue] = useState<string>("");
@@ -80,17 +82,29 @@ function SearchBar() {
   };
 
   return (
-    <div role="presentation" onKeyUp={dropDownKeyUpHandler}>
-      <section>
-        <input
-          type="text"
-          placeholder="질환명을 입력해 주세요."
-          value={inputValue}
-          onChange={inputValueChangeHandler}
-        />
-        <button type="button" onClick={inputValueRemoveHandler}>
-          &times;
-        </button>
+    <div
+      role="presentation"
+      onKeyUp={dropDownKeyUpHandler}
+      className="flex flex-col justify-center items-center"
+    >
+      <section className="mb-3">
+        <label htmlFor="inputValue" className=" relative ">
+          <input
+            id="inputValue"
+            type="text"
+            placeholder="질환명을 입력해 주세요."
+            value={inputValue}
+            onChange={inputValueChangeHandler}
+            className="w-96 p-4 rounded-full"
+          />
+          <button
+            type="button"
+            onClick={inputValueRemoveHandler}
+            className="absolute top-[-3px] right-2"
+          >
+            <img src={removeImg} alt="removeImg" className="w-6" />
+          </button>
+        </label>
       </section>
       {hasText && !isError && (
         <DropDown

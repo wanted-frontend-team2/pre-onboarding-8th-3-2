@@ -1,10 +1,11 @@
+import Layout from "./components/Layout";
 import SearchBar from "./components/SearchBar";
 
 function App() {
   return (
-    <div>
+    <Layout>
       <SearchBar />
-    </div>
+    </Layout>
   );
 }
 

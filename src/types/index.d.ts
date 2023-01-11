@@ -8,3 +8,7 @@ export type SickListProps = {
   dropDownClickHandler: (clickedOption: string) => void;
   selected: number;
 };
+
+type PropsType = {
+  children: React.ReactNode;
+};

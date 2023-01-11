@@ -5,9 +5,12 @@ import { SearchBar } from "./SearchBar";
 import { SearchList } from "./SearchList";
 
 export function SearchSection() {
-  const { searchValue, searchList, isFocus, onChange, setTrue, setFalse } =
+  const { searchValue, autoSearchList, isFocus, onChange, setTrue, setFalse } =
     useSearchSick();
-  const { onKeyDown, focusIndex } = useChangeFocusItem(searchValue, searchList);
+  const { onKeyDown, focusIndex } = useChangeFocusItem(
+    searchValue,
+    autoSearchList
+  );
 
   return (
     <section className=" h-[300px] w-full bg-sky-200 py-6">
@@ -23,7 +26,7 @@ export function SearchSection() {
         {isFocus && (
           <SearchList
             searchValue={searchValue}
-            sickList={searchList}
+            sickList={autoSearchList}
             focusIndex={focusIndex}
           />
         )}

@@ -10,7 +10,7 @@ import { useDebounceInput } from "./useDebounce";
 
 export const useSearchSick = () => {
   const [searchValue, setSearchValue] = useState("");
-  const [searchList, setSearchList] = useState<SickListType>([]);
+  const [autoSearchList, setAutoSearchList] = useState<SickListType>([]);
 
   const { isBoolean: isFocus, setTrue, setFalse } = useBoolean();
   const { inputValue } = useDebounceInput(searchValue);
@@ -18,6 +18,8 @@ export const useSearchSick = () => {
     searchAPI.get,
     inputValue
   );
+
+  const resetAutoList = () => setAutoSearchList([]);
 
   useEffect(() => {
     if (!inputValue) {
@@ -29,9 +31,10 @@ export const useSearchSick = () => {
 
   useEffect(() => {
     if (!result) {
+      resetAutoList();
       return;
     }
-    setSearchList([...result]);
+    setAutoSearchList([...result]);
   }, [result]);
 
   const onChange = (e: OnChangeEvent) => {
@@ -43,7 +46,7 @@ export const useSearchSick = () => {
     searchValue,
     setSearchValue,
     onChange,
-    searchList,
+    autoSearchList,
     isLoading,
     isFocus,
     setTrue,

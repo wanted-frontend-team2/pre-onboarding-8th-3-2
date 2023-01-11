@@ -32,19 +32,21 @@ export default function DiseaseSearch() {
     else setSelectedIndex((prevIndex) => prevIndex - 1);
   };
 
-  const debouncedSearchTarget = useDebounce(searchTarget, 500);
-
-  const getSearchResult = useFetch(`sick?q=${debouncedSearchTarget}`);
-
   useEffect(() => {
-    if (debouncedSearchTarget.trim().length > 0) {
+    if (searchTarget.trim().length > 0) {
       showSuggest();
-      setSuggestedWords(getSearchResult);
     } else {
       hideSuggest();
     }
     setSelectedIndex(-1);
-  }, [debouncedSearchTarget]);
+  }, [searchTarget]);
+
+  const debouncedSearchTarget = useDebounce(searchTarget, 500);
+  const getSearchResult = useFetch(`sick?q=${debouncedSearchTarget}`);
+
+  useEffect(() => {
+    setSuggestedWords(getSearchResult);
+  }, [getSearchResult]);
 
   return (
     <div className="relative w-full pb-52">

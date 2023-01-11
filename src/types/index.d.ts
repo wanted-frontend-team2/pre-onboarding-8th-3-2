@@ -10,6 +10,13 @@ export type SickListProps = {
   selected: number;
 };
 
-type PropsType = {
+export type PropsType = {
   children: React.ReactNode;
+};
+
+export type SickListCache = {
+  [inputValue]: {
+    sickCd: string;
+    sickNm: string;
+  };
 };

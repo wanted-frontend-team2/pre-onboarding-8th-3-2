@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { lazy, useState, useEffect } from "react";
 
+import decorator from "./decorator";
 import { SickList } from "../types";
-
-import DropDown from "./DropDown";
-
 import removeImg from "../images/remove.svg";
+
+const DropDown = lazy(() => import("./DropDown"));
 
 function SearchBar() {
   const [inputValue, setInputValue] = useState<string>("");
@@ -47,16 +46,13 @@ function SearchBar() {
     setOptions([]);
   };
 
-  const sickData = async (sickName: string) => {
+  const sickData = async (value: string) => {
     try {
-      const res = await axios.get(`http://localhost:4000/sick?q=${sickName}`);
-      const data = await res.data;
+      const cacheItems = await decorator(value);
 
-      const filterRegex = new RegExp(sickName, "i");
-      const resultOptions = data.filter((option: SickList) =>
-        option.sickNm.match(filterRegex)
-      );
-      setOptions(resultOptions);
+      if (cacheItems.length) setOptions(cacheItems);
+      else setOptions(cacheItems[value]);
+
       setIsError(false);
     } catch (err) {
       setIsError(true);

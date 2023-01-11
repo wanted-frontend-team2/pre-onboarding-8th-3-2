@@ -1,5 +1,6 @@
-import { SickListProps } from "../types";
+import { useState, useEffect } from "react";
 
+import { SickListProps } from "../types";
 import searchImg from "../images/search.svg";
 
 function DropDown({
@@ -8,12 +9,19 @@ function DropDown({
   dropDownClickHandler,
   selected,
 }: SickListProps) {
+  const [isHasOptions, setIsHasOptions] = useState(false);
+
+  useEffect(() => {
+    if (options.length > 0) setIsHasOptions(true);
+    else setIsHasOptions(false);
+  });
+
   return (
     <section className="flex flex-col justify-center w-96 h-full max-h-96 mb-10 p-2 bg-white rounded-xl">
-      {hasText && options.length !== 0 && <p className="my-2">추천 검색어</p>}
+      {hasText && isHasOptions && <p className="my-2">추천 검색어</p>}
       <ul className="overflow-auto">
-        {options.length === 0 && <p className="my-2">검색어 없음</p>}
-        {options.length !== 0 &&
+        {!isHasOptions && <p className="my-2">검색어 없음</p>}
+        {isHasOptions &&
           options.map((option, idx) => (
             <li
               key={option.sickCd}

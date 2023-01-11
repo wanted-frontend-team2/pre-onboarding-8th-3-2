@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import useModal from "../hooks/useModal";
+import useModalState from "../hooks/useModalState";
 import useFetch from "../hooks/useFetch";
 import SearchBar from "./util/SearchBar";
 import SuggestedSearchWord from "./util/SuggestedSearchWord";
@@ -9,7 +9,7 @@ export default function DiseaseSearch() {
 
   const [searchTarget, setSearchTarget] = useState("");
   const [suggestedWords, setSuggestedWords] = useState([]);
-  const [suggestVisible, showSuggest, hideSuggest] = useModal();
+  const [suggestVisible, showSuggest, hideSuggest] = useModalState();
 
   const [selectedIndex, setSelectedIndex] = useState(-1);
 

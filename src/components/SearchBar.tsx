@@ -13,10 +13,12 @@ function SearchBar() {
   const [options, setOptions] = useState<SickList[]>([]);
   const [selected, setSelected] = useState<number>(-1);
   const [isError, setIsError] = useState<boolean>(false);
+  const [inputTouched, setInputTouched] = useState<boolean>(false);
 
   useEffect(() => {
     if (inputValue === "") {
       setHasText(false);
+      setOptions([]);
     }
   }, [inputValue]);
 
@@ -26,6 +28,18 @@ function SearchBar() {
     setInputValue(value);
 
     return value ? setHasText(true) : setHasText(false);
+  };
+
+  const inputFocusHandler = () => {
+    setTimeout(() => {
+      setInputTouched(true);
+    }, 200);
+  };
+
+  const inputBlurHandler = () => {
+    setTimeout(() => {
+      setInputTouched(false);
+    }, 200);
   };
 
   const inputValueRemoveHandler = () => {
@@ -95,6 +109,8 @@ function SearchBar() {
             placeholder="질환명을 입력해 주세요."
             value={inputValue}
             onChange={inputValueChangeHandler}
+            onFocus={inputFocusHandler}
+            onBlur={inputBlurHandler}
             className="w-96 p-4 rounded-full"
           />
           <button
@@ -106,8 +122,9 @@ function SearchBar() {
           </button>
         </label>
       </section>
-      {hasText && !isError && (
+      {inputTouched && !isError && (
         <DropDown
+          hasText={hasText}
           options={options}
           dropDownClickHandler={dropDownClickHandler}
           selected={selected}

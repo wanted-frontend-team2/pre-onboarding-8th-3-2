@@ -12,8 +12,8 @@ function DropDown({
   const [isHasOptions, setIsHasOptions] = useState(false);
 
   useEffect(() => {
-    if (options.length > 0) setIsHasOptions(true);
-    else setIsHasOptions(false);
+    if (options.length === 0) setIsHasOptions(false);
+    else setIsHasOptions(true);
   });
 
   return (

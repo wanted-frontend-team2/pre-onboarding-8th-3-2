@@ -50,7 +50,7 @@ function SearchBar() {
     try {
       const cacheItems = await decorator(value);
 
-      if (cacheItems.length) setOptions(cacheItems);
+      if (Array.isArray(cacheItems)) setOptions(cacheItems);
       else setOptions(cacheItems[value]);
 
       setIsError(false);

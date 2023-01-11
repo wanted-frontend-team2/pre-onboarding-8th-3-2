@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+/**
+ * Returns a visible state of the modal, a function that shows the modal, and a function that hides the modal.
+ */
 export default function useModal(): [boolean, () => void, () => void] {
   const [modalVisible, setModalVisible] = useState(false);
 

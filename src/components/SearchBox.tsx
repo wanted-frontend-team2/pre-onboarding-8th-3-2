@@ -3,11 +3,16 @@ import { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import RecommendedWords from "./RecommendedWords";
 import { SearchResultType } from "../types";
+import useDebounce from "../hook/debouncer";
 
 function SearchBox(): JSX.Element {
   const [inputValue, setInputValue] = useState<string>("");
   const [searchResults, setSearchResults] = useState<SearchResultType[]>([]);
   const [focusIndex, setFocusIndex] = useState<number>(-1);
+  const debouncedInput = useDebounce(
+    inputValue,
+    Number(process.env.REACT_APP_DEBOUNCING_TIME)
+  );
   const focusRef = useRef<any>(null);
   const listRef = useRef<any>(null);
 
@@ -15,7 +20,7 @@ function SearchBox(): JSX.Element {
     const getSearchResults = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_API_ADDRESS}?q=${inputValue}`
+          `${process.env.REACT_APP_API_ADDRESS}?q=${debouncedInput}`
         );
         setSearchResults(response.data);
         console.info("calling api");
@@ -25,12 +30,12 @@ function SearchBox(): JSX.Element {
         }
       }
     };
-    if (inputValue) {
+    if (debouncedInput) {
       getSearchResults();
       return;
     }
     setSearchResults([]);
-  }, [inputValue]);
+  }, [debouncedInput]);
 
   function onKeyUpHandler(e: any) {
     if (searchResults.length === 0) {

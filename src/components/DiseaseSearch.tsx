@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import useModalState from "../hooks/useModalState";
 import useFetch from "../hooks/useFetch";
+import useDebounce from "../hooks/useDebounce";
 import SearchBar from "./util/SearchBar";
 import SuggestedSearchWord from "./util/SuggestedSearchWord";
 
@@ -31,17 +32,19 @@ export default function DiseaseSearch() {
     else setSelectedIndex((prevIndex) => prevIndex - 1);
   };
 
+  const debouncedSearchTarget = useDebounce(searchTarget, 500);
+
   useEffect(() => {
-    if (searchTarget.trim().length > 0) {
+    if (debouncedSearchTarget.trim().length > 0) {
       showSuggest();
-      useFetch(`sick?q=${searchTarget}`).then((data) =>
+      useFetch(`sick?q=${debouncedSearchTarget}`).then((data) =>
         setSuggestedWords(data)
       );
     } else {
       hideSuggest();
     }
     setSelectedIndex(-1);
-  }, [searchTarget]);
+  }, [debouncedSearchTarget]);
 
   return (
     <div className="relative w-full pb-52">

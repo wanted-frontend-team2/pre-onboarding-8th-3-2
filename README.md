@@ -30,9 +30,9 @@ src
  ┃ ┃ ┗ SuggestedSearchWord.tsx
  ┃ ┗ DiseaseSearch.tsx
  ┣ hooks
- ┃ ┣ useDebounce.tsx
- ┃ ┣ useFetch.tsx
- ┃ ┗ useModalState.tsx
+ ┃ ┣ useDebounce.ts
+ ┃ ┣ useFetch.ts
+ ┃ ┗ useModalState.ts
  ┣ pages
  ┃ ┗ SearchPage.tsx
  ┣ App.tsx

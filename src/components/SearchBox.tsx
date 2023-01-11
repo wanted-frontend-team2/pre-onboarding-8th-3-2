@@ -30,7 +30,7 @@ function SearchBox(): JSX.Element {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
       />
-      <RecommendedWords results={searchResults} />
+      <RecommendedWords results={searchResults} inputValue={inputValue} />
     </>
   );
 }

@@ -6,7 +6,7 @@ interface Props {
   setInputValue: Dispatch<SetStateAction<string>>;
 }
 
-function SearchItem({ sick, inputValue, setInputValue }: Props) {
+function Recommendation({ sick, inputValue, setInputValue }: Props) {
   const firstIndex = sick
     .split('')
     .findIndex((letter) => letter === inputValue[0]);
@@ -22,4 +22,4 @@ function SearchItem({ sick, inputValue, setInputValue }: Props) {
   );
 }
 
-export default SearchItem;
+export default Recommendation;

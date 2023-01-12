@@ -44,7 +44,7 @@ function SearchBox(): JSX.Element {
     setSearchResults([]);
   }, [debouncedInput]);
 
-  function onKeyUpHandler(e: any) {
+  function onKeyUpHandler(e: React.KeyboardEvent<HTMLInputElement>) {
     if (searchResults.length === 0) {
       return;
     }

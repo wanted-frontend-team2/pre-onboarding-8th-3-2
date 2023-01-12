@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { SearchResultType } from "../types";
 import BoldMatchParts from "./BoldMatchParts";
 
@@ -9,13 +10,23 @@ function RecommendedWords({
 }: {
   results: SearchResultType[];
   inputValue: string;
-  listRef: any;
+  listRef: React.LegacyRef<HTMLUListElement>;
   focusIndex: number;
 }): JSX.Element {
+  const focusRef = useRef<any>(null);
+
+  useEffect(() => {
+    focusRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }, [focusIndex]);
+
   function renderWord() {
     if (results.length > 0) {
       return results.map(({ sickCd, sickNm }, index) => (
-        <li key={sickCd} className={index === focusIndex ? "bg-sky-100	" : ""}>
+        <li
+          key={sickCd}
+          ref={index === focusIndex ? focusRef : undefined}
+          className={index === focusIndex ? "bg-sky-100	" : ""}
+        >
           {BoldMatchParts(inputValue, sickNm)}
         </li>
       ));

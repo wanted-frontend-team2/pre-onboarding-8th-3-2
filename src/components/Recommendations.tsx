@@ -21,7 +21,7 @@ function Recommendations({
       <h3>추천검색어</h3>
       {searchResults.map((sick) => (
         <SearchItem
-          key={Math.random() * 100}
+          key={sick.sickCd}
           sick={sick.sickNm}
           inputValue={inputValue}
           setInputValue={setInputValue}

@@ -120,6 +120,7 @@ function SearchBar() {
       </section>
       {inputTouched && !isError && (
         <DropDown
+          inputValue={inputValue}
           hasText={hasText}
           options={options}
           dropDownClickHandler={dropDownClickHandler}

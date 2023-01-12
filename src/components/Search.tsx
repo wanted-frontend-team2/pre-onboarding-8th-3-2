@@ -34,6 +34,8 @@ function Search() {
     setSearchResults([]);
   }, [debouncedValue]);
 
+  console.log('랜더링');
+
   return (
     <section>
       <SearchInput inputValue={inputValue} setInputValue={setInputValue} />

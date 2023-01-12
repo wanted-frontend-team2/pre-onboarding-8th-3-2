@@ -4,7 +4,7 @@ import SearchInput from '../components/SearchInput';
 import { SearchResultType } from '../types';
 import getSearchResults from '../util/api';
 
-function Home() {
+function Search() {
   const [inputValue, setInputValue] = useState<string>('');
   const [searchResults, setSearchResults] = useState<SearchResultType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -35,4 +35,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Search;

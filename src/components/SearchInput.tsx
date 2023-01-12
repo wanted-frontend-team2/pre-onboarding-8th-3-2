@@ -7,11 +7,29 @@ interface Props {
 
 function SearchInput({ inputValue, setInputValue }: Props) {
   return (
-    <input
-      type='text'
-      value={inputValue}
-      onChange={(e) => setInputValue(e.target.value)}
-    />
+    <>
+      <label
+        className='peer/label border-red-300 border relative'
+        htmlFor='searchInput'
+      >
+        <input
+          id='searchInput'
+          required
+          className=' peer/input border '
+          type='text'
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+        <button
+          className='absolute right-3 peer-valid/input:visible invisible'
+          type='button'
+          onClick={() => setInputValue('')}
+        >
+          X
+        </button>
+      </label>
+      <button type='button'>검색</button>
+    </>
   );
 }
 

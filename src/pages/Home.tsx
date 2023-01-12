@@ -20,9 +20,13 @@ function Home() {
   }, [inputValue]);
 
   return (
-    <main>
+    <main className='fixed bg-sky-100 w-full h-full'>
       <SearchInput inputValue={inputValue} setInputValue={setInputValue} />
-      <Recommendations inputValue={inputValue} searchResults={searchResults} />
+      <Recommendations
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        searchResults={searchResults}
+      />
     </main>
   );
 }

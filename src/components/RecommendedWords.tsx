@@ -26,7 +26,10 @@ function RecommendedWords({
     return "";
   }
   return (
-    <ul ref={listRef} className="rounded bg-slate-100 leading-8 p-2">
+    <ul
+      ref={listRef}
+      className="rounded bg-slate-100 leading-8 p-2 h-[70vh] overflow-auto"
+    >
       {renderWord()}
     </ul>
   );

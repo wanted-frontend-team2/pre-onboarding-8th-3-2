@@ -1,24 +1,25 @@
-import { SearchResultType } from "../types";
+import { Dispatch, SetStateAction } from 'react';
 
-function Recommendation({
-  results,
-  inputValue,
-}: {
-  results: SearchResultType[];
+interface Props {
+  sick: string;
   inputValue: string;
-}): JSX.Element {
-  function renderLi() {
-    if (results.length > 0) {
-      return results.map(({ sickCd, sickNm }) => (
-        <li key={sickCd}>{sickNm}</li>
-      ));
-    }
-    if (inputValue) {
-      return <div>검색어 없음</div>;
-    }
-    return "";
-  }
-  return <ul>{renderLi()}</ul>;
+  setInputValue: Dispatch<SetStateAction<string>>;
+}
+
+function Recommendation({ sick, inputValue, setInputValue }: Props) {
+  const firstIndex = sick
+    .split('')
+    .findIndex((letter) => letter === inputValue[0]);
+  const beforeLetters = sick.slice(0, firstIndex).trim();
+  const restLetters = sick.slice(firstIndex + inputValue.length).trim();
+
+  return (
+    <li role='presentation' onClick={() => setInputValue(sick)}>
+      {beforeLetters}
+      <strong>{inputValue}</strong>
+      {restLetters}
+    </li>
+  );
 }
 
 export default Recommendation;

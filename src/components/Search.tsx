@@ -1,35 +1,37 @@
-import { useEffect, useState } from "react";
-import Recommendation from "./Recommendation";
-import { SearchResultType } from "../types";
-import getSearchResults from "../util/api";
+import { useEffect, useState } from 'react';
+import { SearchResultType } from '../types';
+import getSearchResults from '../util/api';
+import Recommendations from './Recommendations';
+import SearchInput from './SearchInput';
 
-function Search(): JSX.Element {
-  const [inputValue, setInputValue] = useState<string>("");
+function Search() {
+  const [inputValue, setInputValue] = useState<string>('');
   const [searchResults, setSearchResults] = useState<SearchResultType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchSearchResults = async () => {
       const { state, data } = await getSearchResults(inputValue);
-      if (state === "success") {
-        setSearchResults(data);
-      }
+      if (state === 'success') setSearchResults(data);
+      setIsLoading(false);
     };
-    if (inputValue) {
-      fetchSearchResults();
-      return;
-    }
+
+    if (inputValue) fetchSearchResults();
+
     setSearchResults([]);
   }, [inputValue]);
 
   return (
-    <>
-      <input
-        type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+    <section>
+      <SearchInput inputValue={inputValue} setInputValue={setInputValue} />
+      <Recommendations
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        searchResults={searchResults}
+        isLoading={isLoading}
       />
-      <Recommendation results={searchResults} inputValue={inputValue} />
-    </>
+    </section>
   );
 }
 

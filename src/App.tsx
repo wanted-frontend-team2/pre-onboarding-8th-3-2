@@ -5,7 +5,7 @@ function App() {
   const [searchItems, setSearchItems] = useState([]);
 
   useEffect(() => {
-    console.log("useEffect in App.js called");
+    console.log("useEffect in App.tsx called");
     console.log(
       fetch("http://localhost:4000/sick")
         .then((res) => res.json())
@@ -21,7 +21,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="App bg-blue-200">
       {searchItems.length > 0 ? (
         <Searchbar searchItems={searchItems} />
       ) : (

@@ -17,7 +17,7 @@
   "scripts": {
     "start": "concurrently \"npm run client\"  \"npm run server\"",
     "client": "react-scripts start",
-    "server": "json-server --watch src/server/db.json --port 4000",
+    "server": "json-server --watch server/db.json --port 4000",
     "build": "react-scripts build",
     "postinstall": "husky install",
     "format": "prettier --cache --write .",

@@ -1,6 +1,6 @@
 import { lazy, useState, useEffect } from "react";
 
-import decorator from "./decorator";
+import cachedFunc from "./cacheFunc";
 import { SickList } from "../types";
 import removeImg from "../images/remove.svg";
 
@@ -48,7 +48,7 @@ function SearchBar() {
 
   const sickData = async (value: string) => {
     try {
-      const cacheItems = await decorator(value);
+      const cacheItems = await cachedFunc(value);
 
       if (Array.isArray(cacheItems)) setOptions(cacheItems);
       else setOptions(cacheItems[value]);

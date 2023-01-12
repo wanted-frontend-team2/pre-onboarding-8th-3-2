@@ -8,7 +8,7 @@ function cacheTypeFunc(inputValue: string, sickList?: SickList[]) {
   };
 }
 
-function decorator(
+function cacheFunc(
   func: (inputValue: string, sickList?: SickList[]) => SickListCache
 ) {
   const cache = new Map();
@@ -35,6 +35,6 @@ function decorator(
   };
 }
 
-const cachedFunc = decorator(cacheTypeFunc);
+const cachedFunc = cacheFunc(cacheTypeFunc);
 
 export default cachedFunc;

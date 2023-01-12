@@ -18,7 +18,9 @@ function DropDown({
 
   return (
     <section className="flex flex-col justify-center w-96 h-full max-h-96 mb-10 p-2 bg-white rounded-xl">
-      {hasText && isHasOptions && <p className="my-2">추천 검색어</p>}
+      {hasText && isHasOptions && (
+        <p className="ml-2 my-2 text-sm text-gray-400">추천 검색어</p>
+      )}
       <ul className="overflow-auto">
         {!isHasOptions && <p className="my-2">검색어 없음</p>}
         {isHasOptions &&

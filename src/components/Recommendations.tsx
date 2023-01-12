@@ -1,7 +1,8 @@
-import { Dispatch, SetStateAction } from 'react';
-import { SearchResultType } from '../types';
-import SearchItem from './Recommendation';
-import Spinner from './Spinner';
+import {Dispatch, SetStateAction} from "react";
+
+import {SearchResultType} from "../types";
+import SearchItem from "./Recommendation";
+import Spinner from "./Spinner";
 
 interface Props {
   searchResults: SearchResultType[];
@@ -17,7 +18,7 @@ function Recommendations({
   isLoading,
 }: Props) {
   return (
-    <ul className='h-[500px] bg-white peer-focus-within/label:block hidden border'>
+    <ul className="h-[500px] bg-white peer-focus-within/label:block hidden border">
       <h3>추천검색어</h3>
       {searchResults.map((sick) => (
         <SearchItem
@@ -27,7 +28,7 @@ function Recommendations({
           setInputValue={setInputValue}
         />
       ))}
-      {inputValue.length > 0 && <li>검색어 없음</li>}
+      {!isLoading && inputValue.length > 0 && <li>검색어 없음</li>}
       {isLoading && inputValue.length > 0 && <Spinner />}
     </ul>
   );

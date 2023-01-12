@@ -20,7 +20,6 @@ function Search() {
     startLoading();
 
     const fetchSearchResults = async () => {
-      startLoading();
       const { state, data } = await getSearchResults(debouncedValue);
       if (state === 'success') setSearchResults(data);
       endLoading();

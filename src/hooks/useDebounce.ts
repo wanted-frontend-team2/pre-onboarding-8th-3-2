@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from 'react';
 
 interface IUseDebounce {
   <T>(value: T, delay?: number): T;

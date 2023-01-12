@@ -1,9 +1,9 @@
-import Search from './pages/Search';
+import Home from './pages/Home';
 
 export default function App() {
   return (
     <div>
-      <Search />
+      <Home />
     </div>
   );
 }

@@ -16,6 +16,7 @@ function SearchInput({ inputValue, setInputValue }: Props) {
           id='searchInput'
           required
           className=' peer/input border '
+          autoComplete='off'
           type='text'
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}

@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import Recommendations from '../components/Recommendations';
-import SearchInput from '../components/SearchInput';
 import { SearchResultType } from '../types';
 import getSearchResults from '../util/api';
+import Recommendations from './Recommendations';
+import SearchInput from './SearchInput';
 
 function Search() {
   const [inputValue, setInputValue] = useState<string>('');
@@ -23,7 +23,7 @@ function Search() {
   }, [inputValue]);
 
   return (
-    <main className='fixed bg-sky-100 w-full h-full'>
+    <section>
       <SearchInput inputValue={inputValue} setInputValue={setInputValue} />
       <Recommendations
         inputValue={inputValue}
@@ -31,7 +31,7 @@ function Search() {
         searchResults={searchResults}
         isLoading={isLoading}
       />
-    </main>
+    </section>
   );
 }
 

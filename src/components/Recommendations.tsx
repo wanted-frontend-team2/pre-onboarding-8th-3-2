@@ -1,16 +1,24 @@
 import { Dispatch, SetStateAction } from 'react';
 import { SearchResultType } from '../types';
 import SearchItem from './SearchItem';
+import Spiner from './spinner';
 
 interface Props {
   searchResults: SearchResultType[];
   inputValue: string;
   setInputValue: Dispatch<SetStateAction<string>>;
+  isLoading: boolean;
 }
 
-function Recommendations({ searchResults, inputValue, setInputValue }: Props) {
+function Recommendations({
+  searchResults,
+  inputValue,
+  setInputValue,
+  isLoading,
+}: Props) {
   return (
-    <div className='bg-white peer-focus-within/label:block hidden border'>
+    <ul className='h-[500px] bg-white peer-focus-within/label:block hidden border'>
+      <h3>추천검색어</h3>
       {searchResults.map((sick) => (
         <SearchItem
           key={Math.random() * 100}
@@ -19,7 +27,9 @@ function Recommendations({ searchResults, inputValue, setInputValue }: Props) {
           setInputValue={setInputValue}
         />
       ))}
-    </div>
+      {inputValue && <li>검색어 없음</li>}
+      {isLoading && inputValue && <Spiner />}
+    </ul>
   );
 }
 

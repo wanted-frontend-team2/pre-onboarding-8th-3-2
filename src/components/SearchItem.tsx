@@ -12,6 +12,7 @@ function SearchItem({ sick, inputValue, setInputValue }: Props) {
     .findIndex((letter) => letter === inputValue[0]);
   const beforeLetters = sick.slice(0, firstIndex).trim();
   const restLetters = sick.slice(firstIndex + inputValue.length).trim();
+
   return (
     <li role='presentation' onClick={() => setInputValue(sick)}>
       {beforeLetters}

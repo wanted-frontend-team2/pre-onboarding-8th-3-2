@@ -7,11 +7,14 @@ import getSearchResults from '../util/api';
 function Home() {
   const [inputValue, setInputValue] = useState<string>('');
   const [searchResults, setSearchResults] = useState<SearchResultType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true);
     const fetchSearchResults = async () => {
       const { state, data } = await getSearchResults(inputValue);
       if (state === 'success') setSearchResults(data);
+      setIsLoading(false);
     };
 
     if (inputValue) fetchSearchResults();
@@ -26,6 +29,7 @@ function Home() {
         inputValue={inputValue}
         setInputValue={setInputValue}
         searchResults={searchResults}
+        isLoading={isLoading}
       />
     </main>
   );

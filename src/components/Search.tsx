@@ -17,10 +17,15 @@ function Search() {
       setIsLoading(false);
     };
 
-    if (inputValue) fetchSearchResults();
+    if (inputValue) {
+      fetchSearchResults();
+      return;
+    }
 
     setSearchResults([]);
   }, [inputValue]);
+
+  console.log('랜더링');
 
   return (
     <section>

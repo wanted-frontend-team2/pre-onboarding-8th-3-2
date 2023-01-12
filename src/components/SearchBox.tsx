@@ -15,8 +15,7 @@ function SearchBox(): JSX.Element {
     inputValue,
     Number(process.env.REACT_APP_DEBOUNCING_TIME)
   );
-  const focusRef = useRef<any>(null);
-  const listRef = useRef<any>(null);
+  const listRef = useRef<HTMLUListElement>(null);
   const cache = useRef<Cache>({});
 
   useEffect(() => {
@@ -73,17 +72,21 @@ function SearchBox(): JSX.Element {
       <input
         type="text"
         value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+        onChange={(e) => {
+          setInputValue(e.target.value);
+          setFocusIndex(-1);
+        }}
         onKeyUp={onKeyUpHandler}
         className="border-2 rounded w-full"
       />
-      <RecommendedWords
-        results={searchResults}
-        inputValue={inputValue}
-        listRef={listRef}
-        focusIndex={focusIndex}
-        focusRef={focusRef}
-      />
+      {inputValue && (
+        <RecommendedWords
+          results={searchResults}
+          inputValue={inputValue}
+          listRef={listRef}
+          focusIndex={focusIndex}
+        />
+      )}
     </div>
   );
 }

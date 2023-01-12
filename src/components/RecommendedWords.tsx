@@ -6,22 +6,16 @@ function RecommendedWords({
   inputValue,
   listRef,
   focusIndex,
-  focusRef,
 }: {
   results: SearchResultType[];
   inputValue: string;
   listRef: any;
   focusIndex: number;
-  focusRef: any;
 }): JSX.Element {
   function renderWord() {
     if (results.length > 0) {
       return results.map(({ sickCd, sickNm }, index) => (
-        <li
-          key={sickCd}
-          ref={index === focusIndex ? focusRef : undefined}
-          className={index === focusIndex ? "bg-sky-100	" : ""}
-        >
+        <li key={sickCd} className={index === focusIndex ? "bg-sky-100	" : ""}>
           {BoldMatchParts(inputValue, sickNm)}
         </li>
       ));

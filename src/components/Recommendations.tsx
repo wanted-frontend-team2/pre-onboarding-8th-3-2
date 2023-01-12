@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { SearchResultType } from '../types';
-import SearchItem from './SearchItem';
-import Spinner from './spinner';
+import SearchItem from './Recommendation';
+import Spinner from './Spinner';
 
 interface Props {
   searchResults: SearchResultType[];
@@ -27,8 +27,8 @@ function Recommendations({
           setInputValue={setInputValue}
         />
       ))}
-      {inputValue && <li>검색어 없음</li>}
-      {isLoading && inputValue && <Spinner />}
+      {inputValue.length < 0 && <li>검색어 없음</li>}
+      {isLoading && inputValue.length < 0 && <Spinner />}
     </ul>
   );
 }

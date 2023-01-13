@@ -2,7 +2,7 @@
 
 > 검색어 추천 기능을 제공하는 검색창 입니다.
 
-[서비스 바로가기](https://deploy-preview-20--ommo.netlify.app)
+[서비스 바로가기](https://recommend-search.netlify.app/)
 
 <br>
 
@@ -20,7 +20,8 @@
  $ npm run start
 ```
 
-- 3000번 포트에서 시작됩니다.
+- 클라이언트는 3000번 포트에서 시작됩니다.
+- 서버는 포트는 4000번에서 시작됩니다.
 
 <br>
 

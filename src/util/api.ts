@@ -11,7 +11,7 @@ async function getSearchResults(input: string, limit?: number) {
   try {
     console.info('calling api');
 
-    const response = await axios.get(`${process.env.REACT_APP_API_ADDRESS}`, {
+    const response = await axios.get(`${process.env.REACT_APP_API_ADDRESS_B}`, {
       params: { q: input, _limit: limit },
     });
 

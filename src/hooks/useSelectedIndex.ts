@@ -20,7 +20,7 @@ export default function useSelectedIndex(
 
   useEffect(() => {
     setSelectedIndex(-1);
-  }, list);
+  }, [list]);
 
   return [selectedIndex, increaseSelectedIndex, decreaseSelectedIndex];
 }

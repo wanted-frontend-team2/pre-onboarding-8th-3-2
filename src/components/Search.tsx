@@ -14,7 +14,7 @@ function Search() {
     (async () => {
       setSearchResults([]);
       if (inputValue.length > 0) {
-        const data = await getSearchResults(inputValue);
+        const { data } = await getSearchResults(inputValue);
         setSearchResults(data);
         setIsLoading(false);
       }

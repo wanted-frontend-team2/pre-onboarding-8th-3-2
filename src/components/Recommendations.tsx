@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
+
 import { SearchResultType } from '../types';
 import SearchItem from './Recommendation';
 import Spinner from './Spinner';
@@ -17,9 +18,9 @@ function Recommendations({
   isLoading,
 }: Props) {
   return (
-    <ul className='h-[500px] bg-white peer-focus-within/label:block hidden border'>
+    <ul className="h-[500px] bg-white peer-focus-within/label:block hidden border">
       <h3>추천검색어</h3>
-      {searchResults.map((sick) => (
+      {searchResults.map(sick => (
         <SearchItem
           key={sick.sickCd}
           sick={sick.sickNm}

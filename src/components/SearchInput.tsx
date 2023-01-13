@@ -9,27 +9,27 @@ function SearchInput({ inputValue, setInputValue }: Props) {
   return (
     <>
       <label
-        className='peer/label border-red-300 border relative'
-        htmlFor='searchInput'
+        className="peer/label relative border border-red-300"
+        htmlFor="searchInput"
       >
         <input
-          id='searchInput'
+          id="searchInput"
           required
-          className=' peer/input border '
-          autoComplete='off'
-          type='text'
+          className=" peer/input border"
+          autoComplete="off"
+          type="text"
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+          onChange={e => setInputValue(e.target.value)}
         />
         <button
-          className='absolute right-3 peer-valid/input:visible invisible'
-          type='button'
+          className="right-3 peer-valid/input:visible absolute invisible"
+          type="button"
           onClick={() => setInputValue('')}
         >
           X
         </button>
       </label>
-      <button type='button'>검색</button>
+      <button type="button">검색</button>
     </>
   );
 }

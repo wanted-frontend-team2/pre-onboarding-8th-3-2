@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+
+import { useDebounce } from '../hooks/useDebounce';
 import { SearchResultType } from '../types';
 import getSearchResults from '../util/api';
 import Recommendations from './Recommendations';
@@ -9,17 +11,20 @@ function Search() {
   const [searchResults, setSearchResults] = useState<SearchResultType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
+  const debouncedValue = useDebounce(inputValue);
+
   useEffect(() => {
     setIsLoading(true);
     (async () => {
       setSearchResults([]);
-      if (inputValue.length > 0) {
-        const { data } = await getSearchResults(inputValue);
+      if (debouncedValue.length > 0) {
+        setIsLoading(true);
+        const { data } = await getSearchResults(debouncedValue);
         setSearchResults(data);
         setIsLoading(false);
       }
     })();
-  }, [inputValue]);
+  }, [debouncedValue]);
 
   return (
     <section>

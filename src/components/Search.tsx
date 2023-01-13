@@ -11,21 +11,15 @@ function Search() {
 
   useEffect(() => {
     setIsLoading(true);
-    const fetchSearchResults = async () => {
-      const { state, data } = await getSearchResults(inputValue);
-      if (state === 'success') setSearchResults(data);
-      setIsLoading(false);
-    };
-
-    if (inputValue) {
-      fetchSearchResults();
-      return;
-    }
-
-    setSearchResults([]);
+    (async () => {
+      setSearchResults([]);
+      if (inputValue.length > 0) {
+        const data = await getSearchResults(inputValue);
+        setSearchResults(data);
+        setIsLoading(false);
+      }
+    })();
   }, [inputValue]);
-
-  console.log('랜더링');
 
   return (
     <section>

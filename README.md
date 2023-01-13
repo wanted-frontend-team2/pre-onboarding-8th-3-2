@@ -2,7 +2,7 @@
 
 > 검색어 추천 기능을 제공하는 검색창 입니다.
 
-[서비스 바로가기](https://pre-onboarding-8th-2-2.netlify.app/)
+[서비스 바로가기]
 
 <br>
 

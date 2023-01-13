@@ -27,9 +27,7 @@ function Recommendations({
           setInputValue={setInputValue}
         />
       ))}
-      {inputValue.length > 0 && searchResults.length <= 0 && (
-        <li>검색어 없음</li>
-      )}
+      {!isLoading && !searchResults.length && <li>검색어 없음</li>}
       {isLoading && inputValue.length > 0 && <Spinner />}
     </ul>
   );

@@ -13,6 +13,8 @@ function RecommendationItem({
   setInputValue,
   isSelected,
 }: Props) {
+  if (sick.match(/([.?*+^$[\]\\(){}|-])/g)) return <li />;
+
   const fullWord = sick
     .split(new RegExp(`(${inputValue})`, 'gi'))
     .map(splittedParts =>

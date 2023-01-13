@@ -8,7 +8,7 @@ interface Props {
   onArrowKeyDown?: [() => void, () => void];
   selectedIndex: number;
   searchResults: SearchResultType[];
-  onBlur?: () => void
+  onBlur?: () => void;
 }
 
 function SearchInput({
@@ -17,7 +17,7 @@ function SearchInput({
   onArrowKeyDown = [() => {}, () => {}],
   selectedIndex,
   searchResults,
-  onBlur = () => {}
+  onBlur = () => {},
 }: Props) {
   const [onArrowUp, onArrowDown] = onArrowKeyDown;
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

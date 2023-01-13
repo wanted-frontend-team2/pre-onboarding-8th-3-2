@@ -13,8 +13,12 @@ function Search() {
   const [isLoading, setIsLoading] = useState(false);
 
   const MAX_RECOMMENDATION = Number(process.env.REACT_APP_MAX_FETCH);
-  const [selectedIndex, increaseSelectedIndex, decreaseSelectedIndex] =
-    useSelectedIndex(searchResults, MAX_RECOMMENDATION);
+  const [
+    selectedIndex,
+    increaseSelectedIndex,
+    decreaseSelectedIndex,
+    clearSelectedIndex,
+  ] = useSelectedIndex(searchResults, MAX_RECOMMENDATION);
 
   const debouncedValue = useDebounce(inputValue);
 

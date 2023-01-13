@@ -1,35 +1,54 @@
-import { useEffect, useState } from "react";
-import Recommendation from "./Recommendation";
-import { SearchResultType } from "../types";
-import getSearchResults from "../util/api";
+import { useEffect, useState } from 'react';
 
-function Search(): JSX.Element {
-  const [inputValue, setInputValue] = useState<string>("");
+import { useDebounce } from '../hooks/useDebounce';
+import useSelectedIndex from '../hooks/useSelectedIndex';
+import { SearchResultType } from '../types';
+import getSearchResults from '../util/api';
+import Recommendations from './Recommendations';
+import SearchInput from './SearchInput';
+
+function Search() {
+  const [inputValue, setInputValue] = useState<string>('');
   const [searchResults, setSearchResults] = useState<SearchResultType[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const maxRecommendation = 7;
+  const [selectedIndex, increaseSelectedIndex, decreaseSelectedIndex] =
+    useSelectedIndex(searchResults, maxRecommendation);
+
+  const debouncedValue = useDebounce(inputValue);
 
   useEffect(() => {
-    const fetchSearchResults = async () => {
-      const { state, data } = await getSearchResults(inputValue);
-      if (state === "success") {
+    setIsLoading(true);
+    (async () => {
+      setSearchResults([]);
+      if (debouncedValue.length > 0) {
+        setIsLoading(true);
+        const { data } = await getSearchResults(
+          debouncedValue,
+          maxRecommendation,
+        );
         setSearchResults(data);
+        setIsLoading(false);
       }
-    };
-    if (inputValue) {
-      fetchSearchResults();
-      return;
-    }
-    setSearchResults([]);
-  }, [inputValue]);
+    })();
+  }, [debouncedValue]);
 
   return (
-    <>
-      <input
-        type="text"
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
+    <section className="relative mt-10">
+      <SearchInput
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        onArrowKeyDown={[decreaseSelectedIndex, increaseSelectedIndex]}
       />
-      <Recommendation results={searchResults} inputValue={inputValue} />
-    </>
+      <Recommendations
+        inputValue={inputValue}
+        setInputValue={setInputValue}
+        searchResults={searchResults}
+        selectedIndex={selectedIndex}
+        isLoading={isLoading}
+      />
+    </section>
   );
 }
 

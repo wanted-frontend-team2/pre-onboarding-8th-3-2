@@ -1,17 +1,33 @@
-import axios from "axios";
+import axios from 'axios';
 
-async function getSearchResults(input: string) {
-  console.info("calling api");
+const cache = new Map();
+
+async function getSearchResults(input: string, limit?: number) {
+  if (cache.has(input)) {
+    console.info('return cache');
+
+    return cache.get(input);
+  }
   try {
-    const response = await axios.get(
-      `${process.env.REACT_APP_API_ADDRESS}?q=${input}`
-    );
-    return { state: "success", data: response.data };
+    console.info('calling api');
+
+    const response = await axios.get(`${process.env.REACT_APP_API_ADDRESS}`, {
+      params: { q: input, _limit: limit },
+    });
+
+    const successResult = { state: 'success', data: response.data };
+
+    cache.set(input, successResult);
+
+    return successResult;
   } catch (e) {
     if (e instanceof Error) {
       alert(`통신에 실패했습니다. 다시 시도해주세요: ${e.message}`);
     }
-    return { state: "fail", data: null };
+
+    const failResult = { state: 'fail', data: [] };
+
+    return failResult;
   }
 }
 

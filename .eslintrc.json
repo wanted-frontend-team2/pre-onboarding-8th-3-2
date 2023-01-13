@@ -30,6 +30,13 @@
     "@typescript-eslint/no-explicit-any": "off",
     // console.info 허용
     "no-console": ["warn", { "allow": ["info"] }],
-    "no-alert": "off"
-  }
+    "no-alert": "off",
+    "react/require-default-props": [
+      2,
+      {
+        "functions": "defaultArguments"
+      }
+    ]
+  },
+  "ignorePatterns": ["tailwind.config.js"]
 }

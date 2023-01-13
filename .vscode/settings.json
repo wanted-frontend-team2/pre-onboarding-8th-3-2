@@ -1,0 +1,6 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // Ignore css unkown rules because of tailwind css.
+  "css.lint.unknownAtRules": "ignore"
+}

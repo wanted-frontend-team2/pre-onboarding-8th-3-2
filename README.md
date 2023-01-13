@@ -2,6 +2,8 @@
 
 > 검색어 추천 기능을 제공하는 검색창 입니다.
 
+[서비스 바로가기](https://deploy-preview-20--ommo.netlify.app)
+
 <br>
 
 ## 사용 스택

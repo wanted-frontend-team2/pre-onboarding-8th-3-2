@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 export default function useSelectedIndex(
   list: object[],
   maxIndex: number,
-): [number, () => void, () => void] {
+): [number, () => void, () => void, () => void] {
   const [selectedIndex, setSelectedIndex] = useState(-1);
 
   const increaseSelectedIndex = () => {
@@ -22,5 +22,9 @@ export default function useSelectedIndex(
     setSelectedIndex(-1);
   }, [list]);
 
-  return [selectedIndex, increaseSelectedIndex, decreaseSelectedIndex];
+  const clearSelectedIndex = () => {
+    setSelectedIndex(-1);
+  }
+
+  return [selectedIndex, increaseSelectedIndex, decreaseSelectedIndex, clearSelectedIndex];
 }

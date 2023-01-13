@@ -28,9 +28,7 @@ function RecommendationItem({
     <li
       role="presentation"
       onClick={() => setInputValue(sick)}
-      className={`flex py-1.5 items-center cursor-pointer ${
-        isSelected && 'bg-blue-200'
-      }`}
+      className={`py-1.5 cursor-pointer ${isSelected && 'bg-blue-200'}`}
     >
       {fullWord}
     </li>

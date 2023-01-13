@@ -8,6 +8,7 @@ interface Props {
   onArrowKeyDown?: [() => void, () => void];
   selectedIndex: number;
   searchResults: SearchResultType[];
+  onBlur?: () => void
 }
 
 function SearchInput({
@@ -16,6 +17,7 @@ function SearchInput({
   onArrowKeyDown = [() => {}, () => {}],
   selectedIndex,
   searchResults,
+  onBlur = () => {}
 }: Props) {
   const [onArrowUp, onArrowDown] = onArrowKeyDown;
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -40,7 +42,7 @@ function SearchInput({
         <input
           id="searchInput"
           required
-          className={`peer/input px-7 py-3 bg-white shadow-sm border-transparent placeholder-slate-400 focus:ring-2 focus:ring-[#007BE9] focus:outline-none ${
+          className={`peer/input pl-7 pr-[100px] py-3 bg-white shadow-sm border-transparent placeholder-slate-400 focus:ring-2 focus:ring-[#007BE9] focus:outline-none ${
             inputValue.length === 0 && 'focus:ring-white'
           } block w-full rounded-3xl`}
           autoComplete="off"
@@ -49,6 +51,7 @@ function SearchInput({
           value={inputValue}
           onChange={e => setInputValue(e.target.value)}
           onKeyDown={onKeyDown}
+          onBlur={onBlur}
         />
         <button
           className="peer-valid/input:visible invisible"

@@ -3,12 +3,12 @@ import axios from 'axios';
 const cache = new Map();
 
 async function getSearchResults(input: string) {
-  try {
-    if (cache.has(input)) {
-      console.info('return cache');
+  if (cache.has(input)) {
+    console.info('return cache');
 
-      return cache.get(input);
-    }
+    return cache.get(input);
+  }
+  try {
     console.info('calling api');
 
     const response = await axios.get(

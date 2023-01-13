@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Dispatch, SetStateAction } from 'react';
 
 interface Props {
@@ -23,7 +22,17 @@ function RecommendationItem({
         splittedParts
       ),
     );
-  return <li>{fullWord}</li>;
+  return (
+    <li
+      role="presentation"
+      onClick={() => setInputValue(sick)}
+      className={`flex py-1.5 items-center cursor-pointer ${
+        isSelected && 'bg-blue-200'
+      }`}
+    >
+      {fullWord}
+    </li>
+  );
 }
 
 export default RecommendationItem;

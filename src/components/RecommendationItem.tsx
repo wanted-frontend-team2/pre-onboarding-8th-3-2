@@ -17,7 +17,7 @@ function RecommendationItem({
     .split(new RegExp(`(${inputValue})`, 'gi'))
     .map(splittedParts =>
       splittedParts.toLowerCase() === inputValue.toLowerCase() ? (
-        <strong>{inputValue}</strong>
+        <strong key={Math.random()}>{inputValue}</strong>
       ) : (
         splittedParts
       ),

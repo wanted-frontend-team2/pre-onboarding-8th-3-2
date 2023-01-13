@@ -47,6 +47,7 @@ function Search() {
         selectedIndex={selectedIndex}
         searchResults={searchResults}
         onBlur={clearSelectedIndex}
+
       />
       <Recommendations
         inputValue={inputValue}

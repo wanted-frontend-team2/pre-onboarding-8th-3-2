@@ -14,6 +14,7 @@ function RecommendationItem({
   isSelected,
 }: Props) {
   const fullWord = sick
+    .replace(/([.?*+^$[\]\\(){}|-])/g, '')
     .split(new RegExp(`(${inputValue})`, 'gi'))
     .map(splittedParts =>
       splittedParts.toLowerCase() === inputValue.toLowerCase() ? (

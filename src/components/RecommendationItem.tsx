@@ -13,12 +13,15 @@ function RecommendationItem({
   setInputValue,
   isSelected,
 }: Props) {
-  const firstIndex = sick
-    .split('')
-    .findIndex(letter => letter === inputValue[0]);
-  const beforeLetters = sick.slice(0, firstIndex).trim();
-  const restLetters = sick.slice(firstIndex + inputValue.length).trim();
-
+  const fullWord = sick
+    .split(new RegExp(`(${inputValue})`, 'gi'))
+    .map(splittedParts =>
+      splittedParts.toLowerCase() === inputValue.toLowerCase() ? (
+        <strong key={Math.random() className="text-[#007BE9]"}>{inputValue}</strong>
+      ) : (
+        splittedParts
+      ),
+    );
   return (
     <li
       role="presentation"
@@ -27,9 +30,7 @@ function RecommendationItem({
         isSelected && 'bg-blue-200'
       }`}
     >
-      {beforeLetters}
-      <strong className="text-[#007BE9]">{inputValue}</strong>
-      {restLetters}
+      {fullWord}
     </li>
   );
 }

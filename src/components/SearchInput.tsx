@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
+import { AiFillCloseCircle, AiOutlineSearch } from 'react-icons/ai';
 
 interface Props {
   inputValue: string;
@@ -26,29 +27,31 @@ function SearchInput({
 
   return (
     <>
-      <label
-        className="peer/label relative border border-red-300"
-        htmlFor="searchInput"
-      >
+      <label className="peer/label mt-10" htmlFor="searchInput">
         <input
           id="searchInput"
           required
-          className=" peer/input border"
+          className={`peer/input px-7 py-3 bg-white shadow-sm border-transparent placeholder-slate-400 focus:ring-2 focus:ring-[#007BE9] focus:outline-none ${
+            inputValue.length === 0 && 'focus:ring-white'
+          } block w-full rounded-3xl`}
           autoComplete="off"
           type="text"
+          placeholder="질환명을 입력해주세요."
           value={inputValue}
           onChange={e => setInputValue(e.target.value)}
           onKeyDown={onKeyDown}
         />
         <button
-          className="right-3 peer-valid/input:visible absolute invisible"
+          className="peer-valid/input:visible invisible"
           type="button"
           onClick={() => setInputValue('')}
         >
-          X
+          <AiFillCloseCircle className="absolute top-[10px] right-14 text-3xl text-[#BBB]" />
         </button>
       </label>
-      <button type="button">검색</button>
+      <button type="button">
+        <AiOutlineSearch className="absolute top-[5px] right-3 p-2 text-4xl text-white rounded-full bg-[#007BE9]" />
+      </button>
     </>
   );
 }

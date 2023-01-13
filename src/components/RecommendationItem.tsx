@@ -28,7 +28,7 @@ function RecommendationItem({
       }`}
     >
       {beforeLetters}
-      <strong>{inputValue}</strong>
+      <strong className="text-[#007BE9]">{inputValue}</strong>
       {restLetters}
     </li>
   );

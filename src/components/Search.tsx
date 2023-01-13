@@ -35,7 +35,7 @@ function Search() {
   }, [debouncedValue]);
 
   return (
-    <section>
+    <section className="relative mt-10">
       <SearchInput
         inputValue={inputValue}
         setInputValue={setInputValue}

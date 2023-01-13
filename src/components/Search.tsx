@@ -40,6 +40,8 @@ function Search() {
         inputValue={inputValue}
         setInputValue={setInputValue}
         onArrowKeyDown={[decreaseSelectedIndex, increaseSelectedIndex]}
+        selectedIndex={selectedIndex}
+        searchResults={searchResults}
       />
       <Recommendations
         inputValue={inputValue}

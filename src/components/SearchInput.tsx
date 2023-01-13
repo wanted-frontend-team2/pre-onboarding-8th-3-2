@@ -1,16 +1,21 @@
 import { Dispatch, SetStateAction } from 'react';
 import { AiFillCloseCircle, AiOutlineSearch } from 'react-icons/ai';
+import { SearchResultType } from '../types';
 
 interface Props {
   inputValue: string;
   setInputValue: Dispatch<SetStateAction<string>>;
   onArrowKeyDown?: [() => void, () => void];
+  selectedIndex: number;
+  searchResults: SearchResultType[];
 }
 
 function SearchInput({
   inputValue,
   setInputValue,
   onArrowKeyDown = [() => {}, () => {}],
+  selectedIndex,
+  searchResults,
 }: Props) {
   const [onArrowUp, onArrowDown] = onArrowKeyDown;
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -21,6 +26,10 @@ function SearchInput({
     }
     if (e.code === 'ArrowDown') {
       onArrowDown();
+      e.preventDefault();
+    }
+    if (e.code === 'Enter') {
+      setInputValue(searchResults[selectedIndex].sickNm);
       e.preventDefault();
     }
   };

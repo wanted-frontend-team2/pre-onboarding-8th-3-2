@@ -42,11 +42,11 @@
 
 ### 검색창 구현
 
-기존 사이트의 검색영역을 클론하여 검색창을 구현하였습니다.  
-[화면캡처]
+[기존 사이트](https://clinicaltrialskorea.com/) 의 검색영역을 클론하여 검색창을 구현하였습니다.  
+![](https://user-images.githubusercontent.com/42338190/212318916-1670f7c5-a92f-408f-a734-4dc5613217ce.gif)
 
 - 질환명 검색 시 API를 호출하여 검색어 추천 기능을 구현하였습니다.
-- 검색어가 없을 시 api 요청을 보내지 않고 추천 검색어 리스트가 보이지 않도록 하였습니다.
+- 검색어가 없을 시 api 요청을 보내지 않고 "검색어 없음"을 노출하였습니다.
 - tailwind의 peer 속성을 이용하여 검색창을 클릭하면 추천 검색어 창이 뜨도록 처리하였습니다.
 - API 연결
   - `axios`를 이용하여 api를 호출한 후 `try-catch`를 이용하여 에러 핸들링을 처리하였습니다.
@@ -56,16 +56,20 @@
 ### 검색어 bold 처리
 
 사용자가 입력한 텍스트와 일치하는 부분을 bold 처리하였습니다.  
-[화면캡처]
+![bold_test](https://user-images.githubusercontent.com/42338190/212320201-e27f8fc6-6c56-49fd-9d45-a74de6be1b8f.gif)
 
 <br>
 
 ### 키보드 이벤트
 
 추천 검색어 리스트에서 키보드 방향키로 이동 가능하도록 구현하였습니다.  
-[화면캡처]
+![keyboard_test](https://user-images.githubusercontent.com/42338190/212320891-7f7e8112-0a43-4ed4-a979-c9cc60ac66a1.gif)
 
 <br>
+
+### 기타 고려한 항목
+
+- 같은 글자가 한줄에 있는 경우 모두 bold 처리를 하였습니다. ![Jan-13-2023 21-23-11](https://user-images.githubusercontent.com/42338190/212319611-60871084-5e76-4b35-9d94-5df556550399.gif)
 
 <br><br>
 

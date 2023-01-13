@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Dispatch, SetStateAction } from 'react';
 
 interface Props {
@@ -13,25 +14,16 @@ function RecommendationItem({
   setInputValue,
   isSelected,
 }: Props) {
-  const firstIndex = sick
-    .split('')
-    .findIndex(letter => letter === inputValue[0]);
-  const beforeLetters = sick.slice(0, firstIndex).trim();
-  const restLetters = sick.slice(firstIndex + inputValue.length).trim();
-
-  return (
-    <li
-      role="presentation"
-      onClick={() => setInputValue(sick)}
-      className={`flex py-1.5 items-center cursor-pointer ${
-        isSelected && 'bg-blue-200'
-      }`}
-    >
-      {beforeLetters}
-      <strong>{inputValue}</strong>
-      {restLetters}
-    </li>
-  );
+  const fullWord = sick
+    .split(new RegExp(`(${inputValue})`, 'gi'))
+    .map(splittedParts =>
+      splittedParts.toLowerCase() === inputValue.toLowerCase() ? (
+        <strong>{inputValue}</strong>
+      ) : (
+        splittedParts
+      ),
+    );
+  return <li>{fullWord}</li>;
 }
 
 export default RecommendationItem;

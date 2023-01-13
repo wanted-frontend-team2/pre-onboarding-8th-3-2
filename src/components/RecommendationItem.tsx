@@ -27,6 +27,7 @@ function RecommendationItem({
   return (
     <li
       role="presentation"
+      onMouseDown={e => e.preventDefault()}
       onClick={() => setInputValue(sick)}
       className={`py-1.5 cursor-pointer ${isSelected && 'bg-blue-200'}`}
     >

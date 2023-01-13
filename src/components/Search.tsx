@@ -11,29 +11,20 @@ function Search() {
   const [searchResults, setSearchResults] = useState<SearchResultType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const startLoading = () => setIsLoading(true);
-  const endLoading = () => setIsLoading(false);
-
   const debouncedValue = useDebounce(inputValue);
 
   useEffect(() => {
-    startLoading();
-
-    const fetchSearchResults = async () => {
-      const { state, data } = await getSearchResults(debouncedValue);
-      if (state === 'success') setSearchResults(data);
-      endLoading();
-    };
-
-    if (debouncedValue) {
-      fetchSearchResults();
-      return;
-    }
-
-    setSearchResults([]);
+    setIsLoading(true);
+    (async () => {
+      setSearchResults([]);
+      if (debouncedValue.length > 0) {
+        setIsLoading(true);
+        const { data } = await getSearchResults(debouncedValue);
+        setSearchResults(data);
+        setIsLoading(false);
+      }
+    })();
   }, [debouncedValue]);
-
-  console.log('랜더링');
 
   return (
     <section>

@@ -1,46 +1,117 @@
-# Getting Started with Create React App
+# Searchbar with Recommendation Word
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> 검색어 추천 기능을 제공하는 검색창 입니다.
 
-## Available Scripts
+[서비스 바로가기](https://pre-onboarding-8th-2-2.netlify.app/)
 
-In the project directory, you can run:
+<br>
 
-### `npm start`
+## 사용 스택
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=black"/> 
+<img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-square&logo=Typescript&logoColor=white"/> 
+<img src="https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white"/> 
+<img src="https://img.shields.io/badge/Tailwind CSS-06B6D4?style=flat-square&logo=Tailwind CSS&logoColor=white"/> 
+<img src="https://img.shields.io/badge/Recoil-007AF4?style=flat-square&logo=Recoil&logoColor=fff"/>
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<br>
 
-### `npm test`
+## 설치 및 실행 방법
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```javascript
+ $ git clone https://github.com/wanted-frontend-team2/pre-onboarding-8th-3-2.git
+ $ npm i
+ $ npm run start
+```
 
-### `npm run build`
+- 3000번 포트에서 시작됩니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 세부 기능
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 코드 상세설명
 
-### `npm run eject`
+[1. 검색창 구현](https://github.com/wanted-frontend-team2/pre-onboarding-8th-3-2/wiki/1.-%EA%B2%80%EC%83%89%EC%B0%BD-%EA%B5%AC%ED%98%84)  
+[2. 검색어 Bold 처리](https://github.com/wanted-frontend-team2/pre-onboarding-8th-3-2/wiki/2.-%EA%B2%80%EC%83%89%EC%96%B4-Bold-%EC%B2%98%EB%A6%AC)  
+[3. API 호출 최적화](https://github.com/wanted-frontend-team2/pre-onboarding-8th-3-2/wiki/3.-API-%ED%98%B8%EC%B6%9C-%EC%B5%9C%EC%A0%81%ED%99%94)  
+[4. API local caching](https://github.com/wanted-frontend-team2/pre-onboarding-8th-3-2/wiki/4.-API-local-caching)  
+[5. 추천 검색어 리스트 키보드 이벤트](https://github.com/wanted-frontend-team2/pre-onboarding-8th-3-2/wiki/5.-%EC%B6%94%EC%B2%9C-%EA%B2%80%EC%83%89%EC%96%B4-%EB%A6%AC%EC%8A%A4%ED%8A%B8-%ED%82%A4%EB%B3%B4%EB%93%9C-%EC%9D%B4%EB%B2%A4%ED%8A%B8)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+<br>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 검색창 구현
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+기존 사이트의 검색영역을 클론하여 검색창을 구현하였습니다.  
+[화면캡처]
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- 질환명 검색 시 API를 호출하여 검색어 추천 기능을 구현하였습니다.
+- 검색어가 없을 시 api 요청을 보내지 않고 추천 검색어 리스트가 보이지 않도록 하였습니다.
+- tailwind의 peer 속성을 이용하여 검색창을 클릭하면 추천 검색어 창이 뜨도록 처리하였습니다.
+- API 연결
+  - `axios`를 이용하여 api를 호출한 후 `try-catch`를 이용하여 에러 핸들링을 처리하였습니다.
 
-## Learn More
+<br>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 검색어 bold 처리
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+사용자가 입력한 텍스트와 일치하는 부분을 bold 처리하였습니다.  
+[화면캡처]
+
+<br>
+
+### 키보드 이벤트
+
+추천 검색어 리스트에서 키보드 방향키로 이동 가능하도록 구현하였습니다.  
+[화면캡처]
+
+<br>
+
+<br><br>
+
+## 디렉토리 구조
+
+<details>
+    <summary>Repository Overview</summary>
+
+        ┣ 📂 src
+          ┣ 📂 components
+          ┃ ┣ 📝 RecommendationItem.tsx
+          ┃ ┣ 📝 Recommendations.tsx
+          ┃ ┣ 📝 Search.tsx
+          ┃ ┣ 📝 SearchInput.tsx
+          ┃ ┣ 📝 SearchTitle.tsx
+          ┃ ┗ 📝 Spinner.tsx
+          ┣ 📂 hooks
+          ┃ ┣ 📝 useDebounce.ts
+          ┃ ┗ 📝 useSelectedIndex.ts
+          ┣ 📂 pages
+          ┃ ┗ 📝 Home.tsx
+          ┣ 📂 types
+          ┃  ┗ 📝 index.d.ts
+          ┣ 📂 util
+          ┃  ┗ 📝 api.ts
+          ┣ 📝 App.tsx
+          ┣ 📝 index.css
+          ┗ 📝 index.tsx
+
+</details>
+
+<br><br>
+
+## 팀원
+
+<table>
+  <tbody>
+    <tr>
+      <td align="center"><a href="https://github.com/trondi"><img src="https://avatars.githubusercontent.com/u/42338190?v=4" width="100px;" alt="김수경 프로필"/><br /><sub><b>김수경</b></sub></a><br />팀원<br /></td>
+      <td align="center"><a href="https://github.com/Iandayy"><img src="https://avatars.githubusercontent.com/u/104152583?v=4" width="100px;" alt="박수연 프로필"/><br /><sub><b>박수연</b></sub></a><br />팀원<br /></td>
+      <td align="center"><a href="https://github.com/ahn0min"><img src="https://avatars.githubusercontent.com/u/89904226?v=4" width="100px;" alt="안영민 프로필"/><br /><sub><b>안영민</b></sub></a><br />팀원<br /></td>
+     <tr/>
+      <td align="center"><a href="https://github.com/heony704"><img src="https://avatars.githubusercontent.com/u/36994104?v=4" width="100px;" alt="이승헌 프로필"/><br /><sub><b>이승헌</b></sub></a><br />팀원<br /></td>
+      <td align="center"><a href="https://github.com/Jooseulgi"><img src="https://avatars.githubusercontent.com/u/54945205?v=4" width="100px;" alt="주슬기 프로필"/><br /><sub><b>주슬기</b></sub></a><br />팀원<br /></td>
+      <td align="center"><a href="https://github.com/dukjjang"><img src="https://avatars.githubusercontent.com/u/102455275?v=4" width="100px;" alt="진현덕 프로필"/><br /><sub><b>진현덕</b></sub></a><br />팀원<br /></td>
+      <td align="center"><a href="https://github.com/cofla159"><img src="https://avatars.githubusercontent.com/u/70076564?v=4" width="100px;" alt="황채림 프로필"/><br /><sub><b>황채림</b></sub></a><br />팀장<br /></td>
+    </tr>
+  </tbody>
+</table>

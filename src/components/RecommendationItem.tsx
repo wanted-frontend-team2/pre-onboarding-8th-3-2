@@ -4,9 +4,15 @@ interface Props {
   sick: string;
   inputValue: string;
   setInputValue: Dispatch<SetStateAction<string>>;
+  isSelected: boolean;
 }
 
-function Recommendation({ sick, inputValue, setInputValue }: Props) {
+function RecommendationItem({
+  sick,
+  inputValue,
+  setInputValue,
+  isSelected,
+}: Props) {
   const firstIndex = sick
     .split('')
     .findIndex(letter => letter === inputValue[0]);
@@ -14,7 +20,13 @@ function Recommendation({ sick, inputValue, setInputValue }: Props) {
   const restLetters = sick.slice(firstIndex + inputValue.length).trim();
 
   return (
-    <li role="presentation" onClick={() => setInputValue(sick)}>
+    <li
+      role="presentation"
+      onClick={() => setInputValue(sick)}
+      className={`flex py-1.5 items-center cursor-pointer ${
+        isSelected && 'bg-blue-200'
+      }`}
+    >
       {beforeLetters}
       <strong>{inputValue}</strong>
       {restLetters}
@@ -22,4 +34,4 @@ function Recommendation({ sick, inputValue, setInputValue }: Props) {
   );
 }
 
-export default Recommendation;
+export default RecommendationItem;

@@ -3,9 +3,27 @@ import { Dispatch, SetStateAction } from 'react';
 interface Props {
   inputValue: string;
   setInputValue: Dispatch<SetStateAction<string>>;
+  onArrowKeyDown?: [() => void, () => void];
 }
 
-function SearchInput({ inputValue, setInputValue }: Props) {
+function SearchInput({
+  inputValue,
+  setInputValue,
+  onArrowKeyDown = [() => {}, () => {}],
+}: Props) {
+  const [onArrowUp, onArrowDown] = onArrowKeyDown;
+  const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.nativeEvent.isComposing) return;
+    if (e.code === 'ArrowUp') {
+      onArrowUp();
+      e.preventDefault();
+    }
+    if (e.code === 'ArrowDown') {
+      onArrowDown();
+      e.preventDefault();
+    }
+  };
+
   return (
     <>
       <label
@@ -20,6 +38,7 @@ function SearchInput({ inputValue, setInputValue }: Props) {
           type="text"
           value={inputValue}
           onChange={e => setInputValue(e.target.value)}
+          onKeyDown={onKeyDown}
         />
         <button
           className="right-3 peer-valid/input:visible absolute invisible"

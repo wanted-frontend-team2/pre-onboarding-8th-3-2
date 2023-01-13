@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const cache = new Map();
 
-async function getSearchResults(input: string) {
+async function getSearchResults(input: string, limit?: number) {
   if (cache.has(input)) {
     console.info('return cache');
 
@@ -11,9 +11,9 @@ async function getSearchResults(input: string) {
   try {
     console.info('calling api');
 
-    const response = await axios.get(
-      `${process.env.REACT_APP_API_ADDRESS}?q=${input}`,
-    );
+    const response = await axios.get(`${process.env.REACT_APP_API_ADDRESS}`, {
+      params: { q: input, _limit: limit },
+    });
 
     const successResult = { state: 'success', data: response.data };
 

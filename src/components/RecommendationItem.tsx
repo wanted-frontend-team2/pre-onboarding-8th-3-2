@@ -13,11 +13,22 @@ function RecommendationItem({
   setInputValue,
   isSelected,
 }: Props) {
-  const firstIndex = sick
-    .split('')
-    .findIndex(letter => letter === inputValue[0]);
-  const beforeLetters = sick.slice(0, firstIndex).trim();
-  const restLetters = sick.slice(firstIndex + inputValue.length).trim();
+  const boldSickName = (sickName: string, targetValue: string) => {
+    const firstIndex = sickName.indexOf(targetValue);
+    if (firstIndex < 0) return sickName;
+
+    const beforeName = sickName.slice(0, firstIndex);
+    const restName = sickName.slice(firstIndex + targetValue.length);
+
+    console.log(firstIndex, 'first');
+    return (
+      <>
+        {beforeName}
+        <strong>{targetValue}</strong>
+        {restName}
+      </>
+    );
+  };
 
   return (
     <li
@@ -27,9 +38,7 @@ function RecommendationItem({
         isSelected && 'bg-blue-200'
       }`}
     >
-      {beforeLetters}
-      <strong>{inputValue}</strong>
-      {restLetters}
+      {boldSickName(sick, inputValue)}
     </li>
   );
 }

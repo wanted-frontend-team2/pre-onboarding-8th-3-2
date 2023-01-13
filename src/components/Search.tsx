@@ -12,9 +12,9 @@ function Search() {
   const [searchResults, setSearchResults] = useState<SearchResultType[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const maxRecommendation = 7;
-  const [selectedIndex, increaseSelectedIndex, decreaseSelectedIndex, clearSelectedIndex] =
-    useSelectedIndex(searchResults, maxRecommendation);
+  const MAX_RECOMMENDATION = Number(process.env.REACT_APP_MAX_FETCH);
+  const [selectedIndex, increaseSelectedIndex, decreaseSelectedIndex] =
+    useSelectedIndex(searchResults, MAX_RECOMMENDATION);
 
   const debouncedValue = useDebounce(inputValue);
 
@@ -26,7 +26,7 @@ function Search() {
         setIsLoading(true);
         const { data } = await getSearchResults(
           debouncedValue,
-          maxRecommendation,
+          MAX_RECOMMENDATION,
         );
         setSearchResults(data);
         setIsLoading(false);

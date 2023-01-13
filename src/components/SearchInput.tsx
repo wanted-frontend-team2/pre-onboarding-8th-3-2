@@ -31,7 +31,7 @@ function SearchInput({
         <input
           id="searchInput"
           required
-          className={`peer/input px-7 py-3 bg-white shadow-sm border-transparent placeholder-slate-400 focus:ring-2 focus:ring-[#007BE9] focus:outline-none ${
+          className={`peer/input pl-7 pr-[100px] py-3 bg-white shadow-sm border-transparent placeholder-slate-400 focus:ring-2 focus:ring-[#007BE9] focus:outline-none ${
             inputValue.length === 0 && 'focus:ring-white'
           } block w-full rounded-3xl`}
           autoComplete="off"

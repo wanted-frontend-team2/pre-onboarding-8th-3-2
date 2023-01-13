@@ -5,12 +5,14 @@ interface Props {
   inputValue: string;
   setInputValue: Dispatch<SetStateAction<string>>;
   onArrowKeyDown?: [() => void, () => void];
+  onBlur?: () => void
 }
 
 function SearchInput({
   inputValue,
   setInputValue,
   onArrowKeyDown = [() => {}, () => {}],
+  onBlur = () => {}
 }: Props) {
   const [onArrowUp, onArrowDown] = onArrowKeyDown;
   const onKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -40,6 +42,7 @@ function SearchInput({
           value={inputValue}
           onChange={e => setInputValue(e.target.value)}
           onKeyDown={onKeyDown}
+          onBlur={onBlur}
         />
         <button
           className="peer-valid/input:visible invisible"

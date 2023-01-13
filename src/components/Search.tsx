@@ -13,7 +13,7 @@ function Search() {
   const [isLoading, setIsLoading] = useState(false);
 
   const maxRecommendation = 7;
-  const [selectedIndex, increaseSelectedIndex, decreaseSelectedIndex] =
+  const [selectedIndex, increaseSelectedIndex, decreaseSelectedIndex, clearSelectedIndex] =
     useSelectedIndex(searchResults, maxRecommendation);
 
   const debouncedValue = useDebounce(inputValue);
@@ -40,6 +40,7 @@ function Search() {
         inputValue={inputValue}
         setInputValue={setInputValue}
         onArrowKeyDown={[decreaseSelectedIndex, increaseSelectedIndex]}
+        onBlur={clearSelectedIndex}
       />
       <Recommendations
         inputValue={inputValue}
